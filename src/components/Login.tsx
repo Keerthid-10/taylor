@@ -45,11 +45,12 @@ const Login : React.FC = () =>{
             if(!validuser){
                 setErr("User not found. Please check your email.")
                 setLoading(false);
-            }
-            if(FormData.password !== validuser?.password){
+            }else{
+                if(FormData.password !== validuser?.password){
                     setErr("Invalid password. Please try again.")
                     setLoading(false);
             }
+            else{
             const userdetails = {
                 userName : validuser?.userName,
                 password : validuser?.password,
@@ -61,6 +62,10 @@ const Login : React.FC = () =>{
             }
             sessionStorage.setItem("user",JSON.stringify(userdetails))
             sessionStorage.setItem("isAuthenticated","true")
+            navigate("/home");
+        }
+            }
+            
         }catch(err){
             setErrMsg("An error occurred during login. Please try again.")
             setLoading(false);
@@ -97,7 +102,6 @@ const Login : React.FC = () =>{
                 name="submit"
                 type="submit"
                 disabled={loading}
-                onClick={()=>navigate("/home")}
                 >Submit</button>
             </form>
         </div>

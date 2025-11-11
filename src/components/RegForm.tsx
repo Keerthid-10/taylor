@@ -165,6 +165,7 @@ const RegForm : React.FC = () => {
             let data =  await axios.post<form[]>("http://localhost:3001/users",formData)
             console.log(data,"esdfg");
             setSuccess("data saved successfully")
+            navigate("/login")
         }catch(err){
             setErrorMsg("error in saving data")
         }
@@ -267,7 +268,8 @@ const RegForm : React.FC = () => {
                 <button 
                 className="btn btn-primary"
                 type="submit"
-                name="button" onClick={()=>{navigate("/login")}}>Sumbit </button>
+                name="button"
+                >Sumbit </button>
                 {success && <span className="text-success">{success}</span>}
                 {errorMsg && <span className="text-danger">{errorMsg}</span>}
                 </div>
